@@ -65,5 +65,14 @@ func main() {
 	mccs := []string{"5812", "5411"}
 	sumByMcc := card.SumByMcc(master.Transactions, mccs)
 
-	fmt.Printf("Сумма транзакций с кодами MCC %v составляет %v\n", mccs, sumByMcc)
+	fmt.Printf("Сумма транзакций с кодами MCC %v составляет %v\n\n", mccs, sumByMcc)
+
+	for i := range master.Transactions {
+		category, codeDeclared := card.TranslateMCC(master.Transactions[i].Mcc)
+		if codeDeclared {
+			fmt.Printf("Коду '%s' соответствует категория '%s'\n", master.Transactions[i].Mcc, category)
+		} else {
+			fmt.Printf("Для кода '%s' категория не указана\n", master.Transactions[i].Mcc)
+		}
+	}
 }
