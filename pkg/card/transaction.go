@@ -1,4 +1,0 @@
-package card
-
-func Transaction() {
-}
